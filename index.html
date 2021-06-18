@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"
+        integrity="sha512-BB7rb8ZBAxtdJdB7nwDijJH9NC+648xSzviK9Itm+5APTtdpgKz1+82bDl4znz/FBhd0R7pJ/gQtomnMpZYzRw=="
+        crossorigin="anonymous"></script>
+    <script src="./p5.js"></script>
+    <script src="./main.js"></script>
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <script src="./vue.min.js"></script>
+    <link rel="shortcut icon" href="mask_g2u_icon.ico" type="image/x-icon">
+    <title>X-Mask</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <div id="box1" class="box">
+            <div class="inputBg" :class="inMask ? 'face-answer' : 'mask-answer' ">
+
+                <img src="./background3.png" alt="">
+            </div>
+
+            <div class="inputBox noprint" :class="inputBoxShow ? 'inputBox-show':'inputBox-hidden' ">
+                <h1>Are you:</h1>
+
+                <p v-show="activeQuestion == 0" class="question" :class="inMask ? 'question-face' : 'question-mask'">
+                    Happy or Sad</p>
+                <div v-show="activeQuestion == 0" class="btnG">
+                    <button class="btn" id="btn1s">happy</button>
+                    
+                    <input v-show="inMask" id="value1" value="50" max="255" type="range" @change="anwsered">
+                    <input v-show="!inMask" id="value1M" value="50" max="255" type="range" @change="anwsered">
+                    <button class="btn" id="btn1">sad</button>
+                </div>
+
+                <p v-show="activeQuestion == 1" class="question" :class="inMask ? 'question-face' : 'question-mask'">
+                    Satisfied with your position</p>
+                <div v-show="activeQuestion == 1" class="btnG">
+                    <button class="btn" id="btn2s">Yes</button>
+                    <input v-show="inMask" id="value2" value="0" max="100" type="range" @change="anwsered">
+                    <input v-show="!inMask" id="value2M" value="0" max="100" type="range" @change="anwsered">
+                    
+                    <button class="btn" id="btn2">No</button>
+                </div>
+
+                <p v-if="activeQuestion == 2" class="question" :class="inMask ? 'question-face' : 'question-mask'">
+                    Introverted or Extroverted
+                </p>
+                <div v-show="activeQuestion == 2" class="btnG">
+                    <button class="btn" id="btn3">Introverted</button>
+                    <input v-show="inMask" id="value3" value="0" max="100" type="range" @change="anwsered">
+                    <input v-show="!inMask" id="value3M" value="0" max="100" type="range" @change="anwsered">
+                    <button class="btn" id="btn3s">Extroverted</button>
+                </div>
+
+                <p v-if="activeQuestion == 3" class="question" :class="inMask ? 'question-face' : 'question-mask'">
+                    Tactful or Straightforward
+                </p>
+                <div v-show="activeQuestion == 3" class="btnG">
+                    <button class="btn" id="btn4">Tactful</button>
+                    <input v-show="inMask" id="value4" value="50" max="100" type="range" @change="anwsered">
+                    <input v-show="!inMask" id="value4M" value="50" max="100" type="range" @change="anwsered">
+                    <button class="btn" id="btn4s">Straightforward</button>
+                </div>
+
+
+                <div class="btnG" id="btnG2">
+                    <button @click="prevQuestion" class="btn-next">PREV</button>
+                    <button @click="nextQuestion" class="btn-next">NEXT</button>
+                </div>
+
+                <button id="btn-toggle" :class="inMask ? 'btn-face':'btn-mask'" @click="answer">
+                    <span class="mask-state" v-if="!inMask">ON REAL</span>
+                    <span v-else>ON MASK</span>
+                </button>
+
+                <div id="inputToggle" class="noprint" @click="inputBoxShow=!inputBoxShow"><span v-if="inputBoxShow"
+                        @click="inMask = true">X</span><span v-else>Answer your question ></span></div>
+                
+            </div>
+
+
+            <div class="logo">
+                <img id="maskLogo" src="./logo.png">
+                <p id="logoText">X-Mask</p>
+            </div>
+
+            <div class="noprint" id="question-state">
+                {{activeQuestion+1}}/4
+            </div>
+
+            <div id="canvasBox">
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- <h1 id='youare'>You are</h1>
+    <h1 id='happyorsad'>Happy or Sad</h1>
+    <h3 id='Sad'>Sad</h3>
+    <h3 id='Happy'>Happy</h3>
+    <h3 id='topText'>Please choose your answer to get your social mask.</h3>
+    <img id='sun' src="/sun.png">
+    <img id='bg' src="/background.png">
+    <img id='moon' src="/moon.png">
+    <img id='logo' src="/logo.png">
+    <img id='fangxing' src="/fangxing.png">
+    <img id='question1' src="/q1backg.png">
+    
+    <h3 id='bottomText1'>X-Mask</h3>
+    <h3 id='bottomText2'>Welcome to X-Mask Web</h3>
+    <h1 id='number'>1/6</h1> -->
+</body>
+
+</html>
